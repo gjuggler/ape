@@ -1,0 +1,39 @@
+\name{ape-internal}
+\alias{tree.build}
+\alias{f.cherry.yule}
+\alias{f.cherry.uniform}
+\alias{sortIndex}
+\alias{nsca}
+\alias{perm.rowscols}
+\alias{mant.zstat}
+\alias{lower.triang}
+\alias{clado.build}
+\alias{phylogram.plot}
+\alias{cladogram.plot}
+\alias{circular.plot}
+\alias{unrooted.plot}
+\alias{unrooted.xy}
+\alias{node.height}
+\alias{node.height.clado}
+\alias{birth.step}
+\alias{death.step}
+\alias{ht.move}
+\alias{loglik.pop}
+\alias{pos.move}
+\alias{BOTHlabels}
+\alias{chronopl.cv}
+\alias{floating.pie.asp}
+\alias{checkLabel}
+\alias{getMRCA}
+\alias{plotCophylo2}
+\alias{plotPhyloCoor}
+\alias{integrateTrapeze}
+\alias{CDF.birth.death}
+\title{Internal Ape Functions}
+\description{
+  Internal \pkg{ape} functions.
+}
+\note{
+  These are not to be called by the user (unless you know what you're doing).
+}
+\keyword{internal}

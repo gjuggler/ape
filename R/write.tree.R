@@ -7,7 +7,7 @@
 ## This file is part of the R-package `ape'.
 ## See the file ../COPYING for licensing issues.
 
-checkLabel <- function(x, ...)
+checkLabel <- function(phy, x, ...)
 {
     ## delete all leading and trailing spaces and tabs, and
     ## the leading left and trailing right parentheses:
@@ -24,6 +24,21 @@ checkLabel <- function(x, ...)
     ## delete extra underscores and extra dashes:
     x <- gsub("_{2,}", "_", x)
     x <- gsub("-{2,}", "-", x)
+
+    ## Output nhx annotations if they exist.
+    tags <- phy$.tags
+    if (!is.null(tags)) {
+      for (i in 1:length(x)) {
+        if (length(tags[[i]]) > 0) {
+	  cur.tags <- tags[[i]]
+	  str <- "[&&NHX:"
+          tag.and.value <- paste(names(cur.tags), as.character(cur.tags), sep='=')
+	  tagvalues <- paste(tag.and.value, collapse=':')
+	  x[i] <- paste(x[i], str, tagvalues, ']', sep='')
+        }
+      }
+    }
+
     x
 }
 
@@ -57,8 +72,8 @@ write.tree <-
 {
     brl <- !is.null(phy$edge.length)
     nodelab <- !is.null(phy$node.label)
-    phy$tip.label <- checkLabel(phy$tip.label)
-    if (nodelab) phy$node.label <- checkLabel(phy$node.label)
+    phy$tip.label <- checkLabel(phy, phy$tip.label)
+    if (nodelab) phy$node.label <- checkLabel(phy, phy$node.label)
     f.d <- paste("%.", digits, "g", sep = "")
     cp <- function(x){
         STRING[k] <<- x

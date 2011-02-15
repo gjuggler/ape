@@ -157,8 +157,8 @@ read.tree <- function(file = "", text = NULL, tree.names = NULL, skip = 0,
         ## in the object of class "phylo" by simply checking that there
         ## is a bifurcation at the root
         ROOT <- length(obj[[i]]$tip.label) + 1
-#        if(sum(obj[[i]]$edge[, 1] == ROOT) == 1 && dim(obj[[i]]$edge)[1] > 1)
-#            stop(paste("There is apparently two root edges in your file: cannot read tree file.\n  Reading Newick file aborted at tree no.", i, sep = ""))
+        if(sum(obj[[i]]$edge[, 1] == ROOT) == 1 && dim(obj[[i]]$edge)[1] > 1)
+            stop(paste("There is apparently two root edges in your file: cannot read tree file.\n  Reading Newick file aborted at tree no.", i, sep = ""))
     }
     if (Ntree == 1 && !keep.multi) obj <- obj[[1]] else {
         if (!is.null(tree.names)) names(obj) <- tree.names
